@@ -17,7 +17,7 @@ UPDATE CUSTOMER_TEMP SET C_NAME = NULL;
 
 --Now we will use the Time Travel extension just like we have used it in previous labs to see the state of data before the update was run. To do so, run the following SQL and make sure you replace the <timestamp> placeholder with the timestamp from step 4. This step will return non NULL values indicating that you are accessing the table before the update.
 SELECT DISTINCT C_NAME FROM CUSTOMER_TEMP
-AT(TIMESTAMP => '<timestamp>'::timestamp_ltz);
+AT(TIMESTAMP => '2026-06-10 10:29:10.629 -0700'::timestamp_ltz);
 
 --The previous step demonstrates that the Time Travel extensions work for temporary tables. However, note that the Time Travel for temporary tables is only 1 days, so if you tried this same SQL after 24 hours, you will not get the desired results. 
 --Now to demonstrate that a temporary table is not available in a different session, open a new worksheet (or if using SnowSQL, start another SnowSQL session). Run the following SQL. The SELECT statement will fail because the temporary table CUSTOMER_TEMP is not available outside of the session it was created in.
@@ -40,7 +40,7 @@ UPDATE NATION_TRA SET N_COMMENT = NULL;
 
 --Now we will use the Time Travel extension just like we have used it in previous labs to see the state of data before the update was run. To do so, run the following SQL and make sure you replace the <timestamp> placeholder with the timestamp from step 11. This step will return non NULL values indicating that you are accessing the table before the update.
 SELECT DISTINCT N_COMMENT FROM NATION_TRA
-AT(TIMESTAMP => '<timestamp>'::timestamp_ltz);
+AT(TIMESTAMP => '2026-06-10 10:39:43.569 -0700'::timestamp_ltz);
 
 --Now to demonstrate that a transient table is available in a different session, open a new worksheet (or if using SnowSQL, start another SnowSQL session). Run the following SQL. The SELECT statement will succeed because the transient table NATION_TEMP can be accessed from any session assuming the user has the required rights.
 SELECT * FROM NATION_TRA;
